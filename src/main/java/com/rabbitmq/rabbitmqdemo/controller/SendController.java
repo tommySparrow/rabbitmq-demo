@@ -66,4 +66,12 @@ public class SendController {
         this.amqpTemplate.convertAndSend("exchange", "topic.messages", context);
         return  context;
     }
+
+    @RequestMapping("/fanoutSend")
+    public void sendFanout() {
+        String context = "hi, fanout msg ";
+        System.out.println("Sender : " + context);
+        this.amqpTemplate.convertAndSend("mybootfanoutExchange","", context);
+    }
+
 }
