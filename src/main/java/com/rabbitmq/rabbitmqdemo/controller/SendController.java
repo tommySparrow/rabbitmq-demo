@@ -3,6 +3,7 @@ package com.rabbitmq.rabbitmqdemo.controller;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -73,5 +74,13 @@ public class SendController {
         System.out.println("Sender : " + context);
         this.amqpTemplate.convertAndSend("mybootfanoutExchange","", context);
     }
+
+    @RequestMapping("/directSend")
+    public String sendMsg(){
+        //调用rabbitTemplate发送消息 发送到交换机springbootD1
+        amqpTemplate.convertAndSend("exchangeOfDirect", "direct.message", "路由模式**********");
+        return "success";
+    }
+
 
 }
