@@ -61,7 +61,7 @@ public class SendController {
     }
     @RequestMapping("/topicSend2")
     public String topicSend2() {
-        String context = "my 00 2";
+        String context = "my topic 2";
         System.out.println("发送者说 : " + context);
         this.amqpTemplate.convertAndSend("exchange", "topic.messages", context);
         return  context;
