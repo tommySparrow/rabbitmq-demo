@@ -23,6 +23,7 @@ public class SendController {
     @RequestMapping("/send")
     public String send(){
         String content="Date:"+new Date();
+        //简单对列的情况下routingKey即为Q名
         amqpTemplate.convertAndSend("lyhTest1",content);
         return content;
     }
